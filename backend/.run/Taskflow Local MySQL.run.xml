@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Taskflow Local MySQL" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.taskflow.TaskflowApplication" />
+    <module name="taskflow-backend" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <envs>
+      <env name="SPRING_PROFILES_ACTIVE" value="local-mysql" />
+      <env name="DB_USERNAME" value="root" />
+      <env name="DB_PASSWORD" value="Kiran@89" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
