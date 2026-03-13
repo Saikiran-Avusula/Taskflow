@@ -318,12 +318,3 @@ server.port=8080
 
 ---
 
-## 12. Resume Bullets (after deploy)
-
-**TaskFlow — Task Management & Project Tracker**
-- Developed full-stack task management application using Spring Boot REST APIs and React.js, implementing role-based access control for Admin and User roles with JWT authentication
-- Designed MySQL schema with projects, tasks, and user management, supporting task assignment, priority tracking, and status workflows (TODO → IN\_PROGRESS → DONE)
-- Built admin dashboard with project and task CRUD operations, and user dashboard with personalised task views using React.js, Tailwind CSS, and Axios
-- Deployed backend on Render and frontend on Vercel with environment-based configuration and CORS-secured API integration
-
-**Tech Stack:** Java, Spring Boot, MySQL, JWT, Spring Security, React.js, Tailwind CSS, Axios, Render, Vercel
