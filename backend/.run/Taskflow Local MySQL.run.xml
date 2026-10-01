@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Taskflow Local MySQL" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.taskflow.TaskflowApplication" />
+    <option name="MAIN_CLASS_NAME" value="com.taskflow.TaskFlowApplication" />
     <module name="taskflow-backend" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <envs>
