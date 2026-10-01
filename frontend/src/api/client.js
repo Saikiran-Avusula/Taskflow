@@ -1,10 +1,9 @@
 import axios from 'axios';
 
+const configuredApiUrl = import.meta.env.VITE_API_URL ?? import.meta.env.VITE_API_BASE_URL;
+
 const api = axios.create({
-  baseURL:
-    import.meta.env.VITE_API_URL ??
-    import.meta.env.VITE_API_BASE_URL ??
-    'http://localhost:8080',
+  baseURL: configuredApiUrl ?? 'http://localhost:8080',
 });
 
 export function setAuthToken(token) {

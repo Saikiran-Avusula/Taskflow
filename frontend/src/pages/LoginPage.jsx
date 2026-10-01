@@ -13,8 +13,6 @@ export default function LoginPage() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const registered = searchParams.get('registered') === 'true';
-  const adminEmail = 'admin@taskflow.com';
-  const adminPassword = 'Admin@123';
 
   const defaultRoute = role === 'ADMIN' ? '/admin/dashboard' : '/user/dashboard';
 
@@ -109,22 +107,24 @@ export default function LoginPage() {
               TaskFlow<span style={{ animation: 'blink 1s step-end infinite' }}>_</span>
             </p>
 
-            <div style={{ marginTop: 22, padding: 12, border: '1px solid #252830', backgroundColor: '#111318', borderRadius: 4 }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                <span style={{ color: '#A8FF3E', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' }}>DEMO ADMIN LOGIN</span>
-                <button
-                  type="button"
-                  onClick={() => { setEmail(adminEmail); setPassword(adminPassword); }}
-                  style={{ padding: '4px 7px', border: '1px solid #3A3E47', borderRadius: 4, background: 'transparent', color: '#ECEEF2', fontSize: 10, cursor: 'pointer' }}
-                >
-                  Use credentials
-                </button>
+            {import.meta.env.DEV && (
+              <div style={{ marginTop: 22, padding: 12, border: '1px solid #252830', backgroundColor: '#111318', borderRadius: 4 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                  <span style={{ color: '#A8FF3E', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' }}>DEMO ADMIN LOGIN</span>
+                  <button
+                    type="button"
+                    onClick={() => { setEmail('admin@taskflow.com'); setPassword('Admin@123'); }}
+                    style={{ padding: '4px 7px', border: '1px solid #3A3E47', borderRadius: 4, background: 'transparent', color: '#ECEEF2', fontSize: 10, cursor: 'pointer' }}
+                  >
+                    Use credentials
+                  </button>
+                </div>
+                <div style={{ marginTop: 8, color: '#A3A8B3', fontSize: 11, lineHeight: 1.7 }}>
+                  <div>Email: <span style={{ color: '#ECEEF2' }}>admin@taskflow.com</span></div>
+                  <div>Password: <span style={{ color: '#ECEEF2' }}>Admin@123</span></div>
+                </div>
               </div>
-              <div style={{ marginTop: 8, color: '#A3A8B3', fontSize: 11, lineHeight: 1.7 }}>
-                <div>Email: <span style={{ color: '#ECEEF2' }}>{adminEmail}</span></div>
-                <div>Password: <span style={{ color: '#ECEEF2' }}>{adminPassword}</span></div>
-              </div>
-            </div>
+            )}
 
             {registered && (
               <div style={{ marginTop: 24, padding: '12px', border: '1px solid #A8FF3E33', backgroundColor: '#A8FF3E08', borderRadius: 4 }}>
