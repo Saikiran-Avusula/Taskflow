@@ -4,6 +4,7 @@ import api from '../api/client';
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -13,6 +14,23 @@ export default function UsersPage() {
       .catch((err) => setError(err?.response?.data?.error || 'Unable to load users'))
       .finally(() => setLoading(false));
   }, []);
+
+  const handleDelete = async (user) => {
+    if (!window.confirm(`Delete ${user.name} (${user.email})? This cannot be undone.`)) {
+      return;
+    }
+
+    setError(null);
+    setDeletingId(user.id);
+    try {
+      await api.delete(`/api/users/${user.id}`);
+      setUsers((currentUsers) => currentUsers.filter((currentUser) => currentUser.id !== user.id));
+    } catch (err) {
+      setError(err?.response?.data?.error || 'Unable to delete user');
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   return (
     <div className="space-y-12 animate-in fade-in duration-700">
@@ -51,6 +69,7 @@ export default function UsersPage() {
                     <th className="px-6 py-4 text-[10px] font-bold text-text-muted uppercase tracking-widest">Entry ID</th>
                     <th className="px-6 py-4 text-[10px] font-bold text-text-muted uppercase tracking-widest">Personnel Identity</th>
                     <th className="px-6 py-4 text-[10px] font-bold text-text-muted uppercase tracking-widest">Clearance Level</th>
+                    <th className="px-6 py-4 text-[10px] font-bold text-text-muted uppercase tracking-widest text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">
@@ -80,6 +99,19 @@ export default function UsersPage() {
                         }`}>
                           {user.role}
                         </span>
+                      </td>
+                      <td className="px-6 py-6 text-right">
+                        {user.role !== 'ADMIN' && (
+                          <button
+                            type="button"
+                            onClick={() => handleDelete(user)}
+                            disabled={deletingId === user.id}
+                            className="text-xs font-semibold text-danger hover:underline disabled:opacity-50"
+                            aria-label={`Delete ${user.name}`}
+                          >
+                            {deletingId === user.id ? 'Deleting...' : 'Delete'}
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

@@ -8,5 +8,10 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findAllByAssignedTo(User user);
+    List<Task> findAllByAssignedToOrCreatedBy(User assignedTo, User createdBy);
     List<Task> findAllByProjectId(Long projectId);
+
+    default List<Task> findAllByUserReference(User user) {
+        return findAllByAssignedToOrCreatedBy(user, user);
+    }
 }
